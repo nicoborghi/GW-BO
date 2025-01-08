@@ -11,7 +11,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-0KTBB3BZ5N"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-0KTBB3BZ5N');
+		</script>
+
 	</head>
+
 	<body class="is-preload">
 
 		<!-- Wrapper-->
@@ -33,10 +45,10 @@
 							<article id="home" class="panel intro">
 								<header>
 									<h1>GW-BO Meetings</h1>
-									<p>...</p>
+									<p>Gravitational Wave Echoes from Bologna</p>
 								</header>
 								<a href="#meetings" class="jumplink pic">
-									<span class="arrow icon solid fa-chevron-right"><span>See my work</span></span>
+									<!-- <span class="arrow icon solid fa-chevron-right"><span>See my work</span></span> -->
 									<img src="images/BH_draw.jpg" alt="" />
 								</a>
 							</article>
@@ -155,28 +167,75 @@
 									<input type="hidden" name="referer_title" value="GW-BO Meetings">
 
 									<div class="row">	
-										<div class="col-10"><input type="text" name="name" placeholder="Full Name (Affiliation)" required="required"></div>
-										<div class="col-10"><input type="email" name="email" placeholder="Email Address"  required="required"></div>
-										<div class="col"><input class="form-check-input" type="radio" name="subscribe" id="form-sub" value="Join" checked> I want to be informed about future meetings.</div>
-										<div class="col"><input class="form-check-input" type="radio" name="subscribe" id="form-unsub" value="Unsubscribe"> Unsubscribe.</div>
-
-										<div class="col-10"><input type="submit" value="Submit" class="primary"></div>
+										<!-- <div class="col-12"><input type="text" name="name" placeholder="Full Name (Affiliation)" required="required"></div> -->
+										<div class="col-12"><input type="email" name="email" placeholder="Email Address"  required="required"></div>
+										<!-- <div class="col"><input class="form-check-input" type="radio" name="subscribe" id="form-sub" value="Join" checked> I want to be informed about future meetings.</div>
+										<div class="col"><input class="form-check-input" type="radio" name="subscribe" id="form-unsub" value="Unsubscribe"> Unsubscribe.</div> -->
+										<div class="col-8"><input type="submit" value="Subscribe" class="primary"></div>
 									</div>
 
 								</form>
 
 							</article>
 
+
+							<article id="privacy-policy" class="panel">
+								<header>
+									<h2>GW-BO Privacy Policy</h2>
+								</header>
+								<section>
+									<h3>Data Handling and Storage</h3>
+									<p>This website collects and uses personal information as follows:</p>
+									<ul>
+										<li><strong>Emails for Meetings</strong>: When you subscribe via the contact form, we collect your email address to send updates and event notifications for GW-BO Meetings. This information is collected with Formspree.  Please refer to <a href="https://formspree.io/legal/privacy-policy" target="_blank">Formspree's Privacy Policy</a> for details.</li>
+										<li><strong>Analytics</strong>: We use Google Analytics to gather anonymized website usage data, including visitor counts, page views, and session durations, to improve the site experience. See <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a> for details.</li>
+									</ul>
+							
+									<h3>Data Handling and Storage</h3>
+									<p>Collected data is handled as follows:</p>
+									<ul>
+										<li><strong>Email Submissions</strong>: Stored and used solely for communication about GW-BO Meetings.</li>
+										<li><strong>Google Analytics</strong>: Data is anonymized and used exclusively for analytical purposes. Refer to <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</li>
+									</ul>
+							
+									<h3>Cookies</h3>
+									<p>This website uses cookies to enhance browsing and collect analytics data. By using this site, you consent to the use of cookies. Adjust cookie preferences via your browser settings. Learn more about cookies at <a href="https://www.allaboutcookies.org/" target="_blank">All About Cookies</a>.</p>
+							
+									<h3>Your Rights</h3>
+									<p>Under GDPR, you have the right to access, rectify, or delete your personal data. For any concerns or requests, contact us directly via the website form.</p>
+								</section>
+							</article>
+
+
 					</div>
 
 
+					<div id="cookie-banner">
+						<p>This website uses cookies and analytics to improve your experience. <a href="/privacy-policy.html" target="_blank">Learn more</a></p>
+						<button id="accept-cookies" class="secondary">Ok</button>
+					</div>
+
+
+					<script>
+						// Check if the user has already accepted cookies
+						if (localStorage.getItem('cookiesAccepted') === 'true') {
+						document.getElementById('cookie-banner').style.display = 'none';
+						}
+			
+						// Handle cookie acceptance
+						document.getElementById('accept-cookies').addEventListener('click', function() {
+						localStorage.setItem('cookiesAccepted', 'true');
+						document.getElementById('cookie-banner').style.display = 'none';
+						});
+					</script>
 
 
 
 				<!-- Footer -->
 					<div id="footer">
 						<ul class="copyright">
-							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							<li>Design: <a href="http://html5up.net">HTML5 UP</a>&nbsp;&nbsp; |&nbsp;&nbsp;  Images: <a href="https://openai.com/dall-e/">DALL-E</a></li>
+
 						</ul>
 					</div>
 

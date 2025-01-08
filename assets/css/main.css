@@ -1304,15 +1304,18 @@ input::-moz-focus-inner {
 	*, *:before, *:after {
 		box-sizing: inherit;
 	}
-
 	body {
-		background-image: url("images/overlay.png"), url("images/bg.jpg");
-		background-repeat: repeat, no-repeat;
-		background-size: auto, 100% 100%;
+		background-image: 
+			linear-gradient(rgba(0, 0, 0, 0.697), rgba(50, 113, 145, 0.5)),
+			url("images/bgnew.webp");
+		background-repeat: no-repeat;
+		background-size: cover;
 		background-attachment: fixed;
 		overflow-y: scroll;
+		backdrop-filter: blur(3px); /* Adds a smooth blur effect */
+		-webkit-backdrop-filter: blur(8px); /* For Safari compatibility */
 	}
-
+	
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 			-moz-animation: none !important;
 			-webkit-animation: none !important;
@@ -2237,4 +2240,45 @@ input::-moz-focus-inner {
 				margin-left: 0.5em;
 			}
 
+		}
+
+
+		#cookie-banner {
+			position: fixed;
+			bottom: 10px;
+			left: 10px;
+			max-width: 350px;
+			background-color: #333333;
+			color: #ffffff;
+			box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+			padding: 15px;
+			border-radius: 8px;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			z-index: 1000;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			line-height: 2;
+		}
+
+		#cookie-banner p {
+			margin: 0;
+			padding: 0;
+			flex: 1;
+			font-size: 13px;
+		}
+	  
+		#cookie-banner a {
+			color: #90627b;
+			text-decoration: none;
+		}
+	
+		#cookie-banner a:hover {
+			text-decoration: underline;
+		}
+
+			
+		#cookie-banner button {		
+			background: #90627b;
 		}
