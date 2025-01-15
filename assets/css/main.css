@@ -2164,7 +2164,7 @@ input::-moz-focus-inner {
 					}
 
 						#main > .panel.intro .pic {
-							height: 25em;
+							height: 33em !important;
 							width: 100%;
 						}
 
@@ -2178,7 +2178,7 @@ input::-moz-focus-inner {
 				@media screen and (max-width: 736px) {
 
 					#main > .panel.intro .pic {
-						height: 20em;
+						height: 30em;
 					}
 
 					#main > .panel.intro header {
