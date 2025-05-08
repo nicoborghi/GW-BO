@@ -72,7 +72,7 @@
             margin-bottom: 8px;
             font-size: 14px;
         }
-        
+
         .color-box {
             width: 20px;
             height: 20px;
@@ -229,14 +229,86 @@
             text-decoration: underline;
         }
         
+        
+        /* Mobile Legend Mini-Carousel */
         @media (max-width: 768px) {
-            .bus-card {
-                min-width: 100%;
+            .legend {
+                bottom: 15px;
+                right: 10px;
+                padding: 10px;
+                max-width: none;
+                width: auto;
+                display: flex;
+                align-items: center;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             }
             
-            .map-container {
-                height: 400px;
+            .desktop-legend {
+                display: none; /* Hide desktop legend on mobile */
             }
+            
+            .mobile-legend {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+            
+            .route-display {
+                display: flex;
+                align-items: center;
+                background-color: rgba(255, 255, 255, 0.95);
+                padding: 5px 8px;
+                border-radius: 6px;
+                min-width: 120px;
+            }
+            
+            .legend-counter {
+                margin-left: 5px;
+                font-size: 10px;
+                color: #666;
+                white-space: nowrap;
+            }
+            
+            .nav-buttons {
+                display: flex;
+                gap: 5px;
+            }
+            
+            .nav-button {
+                width: 24px;
+                height: 24px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                border-radius: 50%;
+                cursor: pointer;
+                font-size: 12px;
+                user-select: none;
+                border: 1px solid #eee;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-button:hover {
+                background-color: #f5f5f5;
+            }
+            
+            .color-box {
+                width: 16px;
+                height: 16px;
+                flex-shrink: 0;
+            }
+            
+            .route-name {
+                margin-left: 8px;
+                font-size: 13px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
         }
     </style>
 </head>
@@ -251,41 +323,58 @@
             <!-- Direct link to the CNR Research Area on Google Maps -->
             <iframe id="map" src="https://www.google.com/maps/d/embed?mid=1nyJ7894iKFFg6gBgtWQEr8KGWaCDSvo&ehbc=2E312F" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             
-            <div class="legend">
-                <div class="legend-item">
-                    <div class="color-box" style="background-color: #0f9d58;"></div>
-                    <span>37 Via Gobetti - CNR</span>
+            <div class="legend" id="route-legend">
+                <!-- Desktop Legend (hidden on mobile) -->
+                <div class="desktop-legend">
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #0f9d58;"></div>
+                        <span>37 Via Gobetti - CNR</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #1a237e;"></div>
+                        <span>87 Via Gobetti - CNR</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #0288d1;"></div>
+                        <span>27A Corticella - Via Byron</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #e65100;"></div>
+                        <span>11C Arcoveggio - Giardini</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #f9a825;"></div>
+                        <span>11B Rosa Luxemburg</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #ffd600;"></div>
+                        <span>34 Ospedale Maggiore</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="color-box" style="background-color: #9c27b0;"></div>
+                        <span>30 Via Colombo - Sostegno</span>
+                    </div>
+                    <div class="legend-item legend-hint">
+                        <span><i>Open the side panel (top left) to select a specific bus line.</i></span>
+                    </div>
                 </div>
-                <div class="legend-item">
-                    <div class="color-box" style="background-color: #1a237e;"></div>
-                    <span>87 Via Gobetti - CNR</span>
+                
+                <!-- Mobile Legend (shown only on mobile) -->
+                <div class="mobile-legend" style="display: none;">
+                    <div class="nav-buttons">
+                        <button class="nav-button" id="prev-route">←</button>
+                    </div>
+                    <div class="route-display">
+                        <div class="color-box" id="current-route-color"></div>
+                        <span class="route-name" id="current-route-name"></span>
+                    </div>
+                    <div class="nav-buttons">
+                        <button class="nav-button" id="next-route">→</button>
+                    </div>
+                    <div class="legend-counter" id="route-counter"></div>
                 </div>
-                <div class="legend-item">
-                    <div class="color-box" style="background-color: #0288d1;"></div>
-                    <span>27A Corticella - Via Byron</span>
-                </div>
-                <div class="legend-item">
-                    <div class="color-box" style="background-color: #e65100;"></div>
-                    <span>11C Arcoveggio - Giardini</span>
-                </div>
-                <div class="legend-item">
-                    <div class="color-box" style="background-color: #f9a825;"></div>
-                    <span>11B Rosa Luxemburg</span>
-                </div>
-                <div class="legend-item">
-                    <div class="color-box" style="background-color: #ffd600;"></div>
-                    <span>34 Ospedale Maggiore</span>
-                </div>
-                <div class="legend-item">
-                    <div class="color-box" style="background-color: #9c27b0;"></div>
-                    <span>30 Via Colombo - Sostegno</span>
-                </div>
-                <div class="legend-item">
-                    <div class="color-box" style="background-color: #ffffff;"></div>
-                    <span><i>Open the side panel (top left) to select a specific bus line.</i></span>
-                </div>
-
             </div>
+
         </div>
         
         <div class="info-panel">
@@ -595,5 +684,82 @@
             <p><i>This website is kindly provided to you by Matteo Tagliazucchi and Nicola Borghi.</i></p>
         </footer>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Define the routes data
+            const routes = [
+                { name: "37 Via Gobetti - CNR", color: "#0f9d58" },
+                { name: "87 Via Gobetti - CNR", color: "#1a237e" },
+                { name: "27A Corticella - Via Byron", color: "#0288d1" },
+                { name: "11C Arcoveggio - Giardini", color: "#e65100" },
+                { name: "11B Rosa Luxemburg", color: "#f9a825" },
+                { name: "34 Ospedale Maggiore", color: "#ffd600" },
+                { name: "30 Via Colombo - Sostegno", color: "#9c27b0" }
+            ];
+            
+            let currentRouteIndex = 0;
+            
+            // Elements
+            const desktopLegend = document.querySelector('.desktop-legend');
+            const mobileLegend = document.querySelector('.mobile-legend');
+            const currentRouteColor = document.getElementById('current-route-color');
+            const currentRouteName = document.getElementById('current-route-name');
+            const routeCounter = document.getElementById('route-counter');
+            const prevButton = document.getElementById('prev-route');
+            const nextButton = document.getElementById('next-route');
+            
+            // Function to check if the device is mobile
+            function isMobile() {
+                return window.innerWidth <= 768;
+            }
+            
+            // Function to update the display with the current route
+            function updateRouteDisplay() {
+                const route = routes[currentRouteIndex];
+                currentRouteColor.style.backgroundColor = route.color;
+                currentRouteName.textContent = route.name;
+                routeCounter.textContent = `${currentRouteIndex + 1}/${routes.length}`;
+            }
+            
+            // Function to navigate between routes
+            function navigateRoute(direction) {
+                if (direction === 'next') {
+                    currentRouteIndex = (currentRouteIndex + 1) % routes.length;
+                } else {
+                    currentRouteIndex = (currentRouteIndex - 1 + routes.length) % routes.length;
+                }
+                updateRouteDisplay();
+            }
+            
+            // Function to toggle between desktop and mobile views
+            function toggleView() {
+                if (isMobile()) {
+                    desktopLegend.style.display = 'none';
+                    mobileLegend.style.display = 'flex';
+                    updateRouteDisplay();
+                } else {
+                    desktopLegend.style.display = 'block';
+                    mobileLegend.style.display = 'none';
+                }
+            }
+            
+            // Set up event listeners
+            prevButton.addEventListener('click', function() {
+                navigateRoute('prev');
+            });
+            
+            nextButton.addEventListener('click', function() {
+                navigateRoute('next');
+            });
+            
+            // Initialize the view
+            toggleView();
+            
+            // Handle window resize
+            window.addEventListener('resize', toggleView);
+        });
+    </script>
+    
 </body>
 </html>
